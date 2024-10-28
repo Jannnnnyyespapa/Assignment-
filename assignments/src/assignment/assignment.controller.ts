@@ -36,5 +36,22 @@ private checkPrime(num: number): boolean {
 }
 
 
+//factiorial calculator
+@Get('factorial/:f')
+getFactorial(@Param('f', ParseIntPipe) f: number): { factorial: number } {
+  return { factorial: this.calculateFactorial(f) };
+}
+
+private calculateFactorial(num: number): number {
+  if (num < 0) return -1; // Return -1 for negative numbers (undefined for factorial)
+  if (num === 0 || num === 1) return 1;
+
+  let result = 1;
+  for (let i = 2; i <= num; i++) {
+    result *= i;
+  }
+  return result;
+}
+
 
 }
